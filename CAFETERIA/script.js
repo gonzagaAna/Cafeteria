@@ -41,3 +41,32 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+
+
+// 
+const botaoSalvar = document.getElementById('salvar-carrinho');
+
+botaoSalvar.addEventListener('click', function () {
+    const itensCarrinho = [];
+    listaPedidos.querySelectorAll('li').forEach(li => {
+        const texto = li.firstChild.textContent.trim(); // ex: Café - R$ 10,00
+        const [nome, precoTexto] = texto.split(' - R$ ');
+        const preco = parseFloat(precoTexto.replace(',', '.'));
+        itensCarrinho.push({ nome, preco });
+    });
+
+    fetch('/salvar-carrinho', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(itensCarrinho)
+    })
+    .then(response => response.text())
+    .then(data => {
+        alert(data); // Feedback ao usuário
+    })
+    .catch(err => {
+        console.error('Erro ao salvar o carrinho:', err);
+        alert('Erro ao salvar o carrinho');
+    });
+});
+
