@@ -40,11 +40,8 @@ document.addEventListener('DOMContentLoaded', function () {
             alert('Por favor, insira um nome e um preço válido.');
         }
     });
-});
 
-
-// 
-const botaoSalvar = document.getElementById('salvar-carrinho');
+    const botaoSalvar = document.getElementById('salvar-carrinho');
 
 botaoSalvar.addEventListener('click', function () {
     const itensCarrinho = [];
@@ -70,3 +67,8 @@ botaoSalvar.addEventListener('click', function () {
     });
 });
 
+
+});
+
+
+// 
